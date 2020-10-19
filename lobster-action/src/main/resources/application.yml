@@ -5,6 +5,8 @@ server:
   servlet:
     # Application access path
     context-path: /
+    encoding:
+      charset: UTF-8
   tomcat:
     # Uri encoding of Tomcat
     uri-encoding: UTF-8

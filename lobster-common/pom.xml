@@ -9,18 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <description>公共模块</description>
 
-    <description>系统管理模块：部门管理、用户管理、菜单管理等</description>
-
-    <artifactId>lobster-system</artifactId>
+    <artifactId>lobster-common</artifactId>
 
     <dependencies>
 
-        <!-- 公共模块-->
+        <!-- Apache工具包 -->
         <dependency>
-            <groupId>com.lobster</groupId>
-            <artifactId>lobster-common</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
 
     </dependencies>
