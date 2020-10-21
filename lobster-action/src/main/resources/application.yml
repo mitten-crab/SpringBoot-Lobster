@@ -27,3 +27,8 @@ spring:
     show-sql: true
     generate-ddl: false
     open-in-view: false
+
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true

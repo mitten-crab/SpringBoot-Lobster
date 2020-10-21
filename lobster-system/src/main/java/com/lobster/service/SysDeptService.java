@@ -1,6 +1,7 @@
 package com.lobster.service;
 
 import com.lobster.entity.SysDept;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
@@ -14,7 +15,14 @@ import java.util.List;
  **/
 public interface SysDeptService {
 
-    Object findAllByPage(SysDept sysDept, Pageable pageable);
+    /**
+     * 查询部门列表-分页
+     *
+     * @param sysDept  部门
+     * @param pageable 分页参数对象
+     * @return 部门列表分页对象
+     */
+    Page<SysDept> findAllByPage(SysDept sysDept, Pageable pageable);
 
     List<SysDept> findAll(SysDept sysDept, Sort sort);
 

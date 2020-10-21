@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,19 +48,26 @@ public class SysDeptController {
             }
     )
     @PostMapping(value = "/list")
-    public ResponseEntity index(
+    public ResponseEntity list(
             String deptName,
-            @RequestParam(name = "pageNum", defaultValue = "1") String pageNum,
-            @RequestParam(name = "pageSize", defaultValue = "10") String pageSize
+            @RequestParam(name = "pageNum", defaultValue = "1") int pageNumber,
+            @RequestParam(name = "pageSize", defaultValue = "10") int pageSize
     ) {
-        List<SysDept> all = sysDeptService.findAll(new SysDept(), Sort.by("updateTime"));
+
+        final PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "updateTime"));
+
+        SysDept sysDept = new SysDept();
+        Page<SysDept> sysDeptPage = sysDeptService.findAllByPage(sysDept, pageRequest);
+
         List<SysDeptVO> sysDeptVOList = new ArrayList<SysDeptVO>();
-        all.forEach(s -> {
+        sysDeptPage.forEach(sysDeptData -> {
             SysDeptVO sysDeptVO = new SysDeptVO();
-            BeanUtils.copyProperties(s, sysDeptVO);
+            BeanUtils.copyProperties(sysDeptData, sysDeptVO);
             sysDeptVOList.add(sysDeptVO);
         });
+
         return new ResponseEntity<>(ResponseResult.success(sysDeptVOList), HttpStatus.OK);
+
     }
 
 }

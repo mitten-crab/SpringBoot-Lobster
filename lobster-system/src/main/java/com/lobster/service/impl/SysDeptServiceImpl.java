@@ -4,6 +4,7 @@ import com.lobster.entity.SysDept;
 import com.lobster.repository.SysDeptRepository;
 import com.lobster.service.SysDeptService;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,16 @@ public class SysDeptServiceImpl implements SysDeptService {
     @Resource
     private SysDeptRepository sysDeptRepository;
 
+    /**
+     * 查询部门列表-分页
+     *
+     * @param sysDept  部门
+     * @param pageable 分页参数对象
+     * @return 部门列表分页对象
+     */
     @Override
-    public Object findAllByPage(SysDept sysDept, Pageable pageable) {
-        Example<SysDept> example = Example.of(new SysDept());
+    public Page<SysDept> findAllByPage(SysDept sysDept, Pageable pageable) {
+        Example<SysDept> example = Example.of(sysDept);
         return sysDeptRepository.findAll(example, pageable);
     }
 
