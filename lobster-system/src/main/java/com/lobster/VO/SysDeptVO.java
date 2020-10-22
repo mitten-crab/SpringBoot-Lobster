@@ -1,16 +1,20 @@
 package com.lobster.VO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 部门VO
  */
+@ApiModel(value = "部门对象", description = "部门对象SysDept")
 public class SysDeptVO {
 
     /**
      * 主键
      */
+    @ApiModelProperty(name = "id", notes = "主键哦")
     private String id;
 
     /**

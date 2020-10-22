@@ -31,6 +31,12 @@ public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
 
+
+    /**
+     * @api {POST} /v1.0.0/sysUser/list 获取用户列表
+     * @apiGroup 用户
+     * @apiVersion 1.0.0
+     */
     @ApiOperation(value = "获取用户列表")
     @ApiImplicitParams(
             {

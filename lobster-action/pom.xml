@@ -37,6 +37,12 @@
         </dependency>
         <!-- Deploy War ↑↑↑↑ -->
 
+        <dependency>
+            <groupId>io.github.yedaxia</groupId>
+            <artifactId>japidocs</artifactId>
+            <version>1.4.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
