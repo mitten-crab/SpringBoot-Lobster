@@ -1,6 +1,6 @@
 package com.lobster.controller;
 
-import com.lobster.VO.SysDeptVO;
+import com.lobster.vo.SysDeptVO;
 import com.lobster.common.entity.PageDataInfo;
 import com.lobster.common.entity.ResponseResult;
 import com.lobster.entity.SysDept;

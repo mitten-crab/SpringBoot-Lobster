@@ -1,4 +1,4 @@
-package com.lobster.common.core;
+package com.lobster.common.config;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;

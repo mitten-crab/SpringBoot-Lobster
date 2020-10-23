@@ -1,4 +1,4 @@
-package com.lobster.common.core;
+package com.lobster.common.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

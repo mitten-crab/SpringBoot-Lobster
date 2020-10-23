@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 用户信息 Entity
@@ -55,7 +56,7 @@ public class SysUser implements Serializable {
     private String phone;
 
     /**
-     * 用户性别（0：未知、1：男、2：女）
+     * 用户性别
      */
     @Column(name = "sex")
     private String sex;
@@ -81,8 +82,8 @@ public class SysUser implements Serializable {
     /**
      * 帐号状态（0：停用、1：正常）
      */
-    @Column(name = "status")
-    private String status;
+    @Column(name = "user_status")
+    private String userStatus;
 
     /**
      * 创建者
@@ -114,9 +115,8 @@ public class SysUser implements Serializable {
     @Column(name = "del_flag")
     private String delFlag;
 
-
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(String id) {
@@ -124,7 +124,7 @@ public class SysUser implements Serializable {
     }
 
     public String getDeptId() {
-        return this.deptId;
+        return deptId;
     }
 
     public void setDeptId(String deptId) {
@@ -132,7 +132,7 @@ public class SysUser implements Serializable {
     }
 
     public String getLoginName() {
-        return this.loginName;
+        return loginName;
     }
 
     public void setLoginName(String loginName) {
@@ -140,7 +140,7 @@ public class SysUser implements Serializable {
     }
 
     public String getUserName() {
-        return this.userName;
+        return userName;
     }
 
     public void setUserName(String userName) {
@@ -148,7 +148,7 @@ public class SysUser implements Serializable {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -156,7 +156,7 @@ public class SysUser implements Serializable {
     }
 
     public String getPhone() {
-        return this.phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
@@ -164,7 +164,7 @@ public class SysUser implements Serializable {
     }
 
     public String getSex() {
-        return this.sex;
+        return sex;
     }
 
     public void setSex(String sex) {
@@ -172,7 +172,7 @@ public class SysUser implements Serializable {
     }
 
     public String getSalt() {
-        return this.salt;
+        return salt;
     }
 
     public void setSalt(String salt) {
@@ -180,7 +180,7 @@ public class SysUser implements Serializable {
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
@@ -188,59 +188,58 @@ public class SysUser implements Serializable {
     }
 
     public String getRemark() {
-        return this.remark;
+        return remark;
     }
 
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    public String getStatus() {
-        return this.status;
+    public String getUserStatus() {
+        return userStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 
     public String getCreateBy() {
-        return this.createBy;
+        return createBy;
     }
 
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
 
-    public java.util.Date getCreateTime() {
-        return this.createTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateTime(java.util.Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     public String getUpdateBy() {
-        return this.updateBy;
+        return updateBy;
     }
 
     public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
     }
 
-    public java.util.Date getUpdateTime() {
-        return this.updateTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdateTime(java.util.Date updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
     public String getDelFlag() {
-        return this.delFlag;
+        return delFlag;
     }
 
     public void setDelFlag(String delFlag) {
         this.delFlag = delFlag;
     }
-
 }

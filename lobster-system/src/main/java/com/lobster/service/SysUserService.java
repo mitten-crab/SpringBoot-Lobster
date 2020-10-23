@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 用户信息 Service
@@ -16,7 +17,7 @@ import java.util.List;
 public interface SysUserService {
 
     /**
-     * 查询用户列表-分页
+     * 用户-查询-列表分页
      *
      * @param sysUser  用户
      * @param pageable 分页参数对象
@@ -24,6 +25,45 @@ public interface SysUserService {
      */
     Page<SysUser> findAllByPage(SysUser sysUser, Pageable pageable);
 
+    /**
+     * 用户-查询列表
+     *
+     * @param sysUser 用户
+     * @param sort    排序
+     * @return 用户列表
+     */
     List<SysUser> findAll(SysUser sysUser, Sort sort);
+
+    /**
+     * 用户-查询-根据用户id
+     *
+     * @param id 用户id
+     * @return 用户
+     */
+    Optional<SysUser> findById(String id);
+
+    /**
+     * 用户-保存
+     *
+     * @param sysUser 用户
+     * @return 用户
+     */
+    SysUser save(SysUser sysUser);
+
+    /**
+     * 用户-修改
+     *
+     * @param sysUser 用户
+     * @return 用户
+     */
+    SysUser update(SysUser sysUser);
+
+    /**
+     * 用户-删除
+     *
+     * @param ids 用户ID
+     * @return 影响数
+     */
+    int delete(String[] ids);
 
 }
