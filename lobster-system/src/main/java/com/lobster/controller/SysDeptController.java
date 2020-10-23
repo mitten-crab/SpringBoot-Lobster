@@ -17,13 +17,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 部门接口
@@ -98,14 +97,20 @@ public class SysDeptController {
                     @ApiImplicitParam(name = "pageSize", value = "页大小", dataType = "String", dataTypeClass = String.class, paramType = "query", example = "10")
             }
     )
+    @ResponseBody
     @PostMapping(value = "/list")
     public ResponseEntity list(
-            @RequestParam(name = "deptName", defaultValue = "") String deptName,
-            @RequestParam(name = "pageNum", defaultValue = "0") int pageNumber,
-            @RequestParam(name = "pageSize", defaultValue = "10") int pageSize
+            @RequestBody Map<Object, Object> map
     ) {
 
-        final PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "updateTime"));
+        // 部门名称
+        String deptName = (String) map.get("deptName");
+        // 页码
+        int pageNumber = (int) map.get("pageNumber");
+        // 页大小
+        int pageSize = (int) map.get("pageSize");
+
+        final PageRequest pageRequest = PageDataInfo.toPageParam(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "updateTime"));
 
         SysDept sysDept = new SysDept();
         sysDept.setDeptName(deptName);
@@ -120,7 +125,33 @@ public class SysDeptController {
 
         final PageDataInfo pageDataInfo = PageDataInfo.toPageData(sysDeptVOList, sysDeptPage);
 
-        return new ResponseEntity<ResponseResult>(ResponseResult.success(pageDataInfo), HttpStatus.OK);
+        return ResponseEntity.ok(ResponseResult.success(pageDataInfo));
     }
+
+
+    /**
+     * @param deptName
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
+    @PostMapping(value = "/create")
+    public ResponseEntity create(
+            @RequestParam(name = "deptName", defaultValue = "") String deptName,
+            @RequestParam(name = "pageNum", defaultValue = "0") int pageNumber,
+            @RequestParam(name = "pageSize", defaultValue = "10") int pageSize
+    ) {
+
+
+        return new ResponseEntity<ResponseResult>(ResponseResult.success(), HttpStatus.OK);
+    }
+
+    @ApiOperation("删除部门")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@RequestBody Set<String> ids) {
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }

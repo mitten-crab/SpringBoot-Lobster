@@ -1,6 +1,9 @@
 package com.lobster.common.entity;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.io.Serializable;
 import java.util.List;
@@ -91,6 +94,12 @@ public class PageDataInfo implements Serializable {
 
     public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
+    }
+
+    public static PageRequest toPageParam(int pageNumber, int pageSize, Sort sort) {
+        pageNumber = ObjectUtils.isEmpty(pageNumber) ? 0 : pageNumber;
+        pageSize = ObjectUtils.isEmpty(pageSize) ? 10 : pageSize;
+        return PageRequest.of(pageNumber, pageSize, sort);
     }
 
     public static PageDataInfo toPageData(Page<?> page) {
